@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from typing import Optional, Any
 from .exceptions import InvalidPropertyValue, InvalidTemplateValueType, InvalidPropertyValueType
 from .node import Node
 
@@ -198,3 +199,89 @@ def f_enabled(value: list[Node]) -> list[Node]:
         raise InvalidTemplateValueType("enabled", type(value), list)
 
     return list(filter(lambda x: (is_enabled(x) != 0), value))
+
+
+def f_has_property(value: Node, node_property: str, expected_value: Optional[Any] = None) -> bool:
+    """has_property custom jinja filter.
+
+    Returns True if given node has the property.
+    Optionally, check property value to expected if given.
+
+    Parameters
+    ----------
+    value: Node
+        DTS node to filter
+    node_property: str
+        Property name
+    expected_value: Optional[Any]
+        Property expected value, optional
+
+    Returns
+    -------
+    bool
+        True if Node holds the given property
+        If expected is provided, True if property value matches.
+        False otherwise.
+
+    Raises
+    ------
+    InvalidTemplateValueType
+        if `value` is not of Node type
+        if `node_property` is not of str type
+
+    Notes
+    -----
+    For boolean property, no expected value is needed, in devicetree, boolean property has
+    no value, present means true, false otherwise.
+    """
+    if not isinstance(value, Node):
+        raise InvalidTemplateValueType("has_property", type(value), Node)
+    if not isinstance(node_property, str):
+        raise InvalidTemplateValueType("has_property", type(node_property), str)
+
+    prop = value._node.props.get(node_property)
+    if not prop:
+        return False
+    elif not expected_value:
+        # Property found but no expected value, return True
+        return True
+    else:
+        # Otherwise, check expected
+        return prop.value == expected_value
+
+
+def f_with_property(
+    value: list[Node], node_property: str, expected_value: Optional[Any] = None
+) -> list[Node]:
+    """with_property custom jinja filter.
+
+    Filters the input list of Node and returns the list of Node with the given property
+
+    Parameters
+    ----------
+    value: list[Node]
+        DTS node list to filter
+    node_property: str
+        Property name
+    expected_value: Optional[Any]
+        Property expected value, optional
+
+    Returns
+    -------
+    list[Node]
+        A filtered list w/ only nodes w/ `property_name` (optionally equals to expected)
+
+    Raises
+    ------
+    InvalidTemplateValueType
+        if `value` is not of Node type
+        if `node_property` is not of str type
+    """
+    if not isinstance(value, list):
+        raise InvalidTemplateValueType("with_property", type(value), list)
+    if not isinstance(node_property, str):
+        raise InvalidTemplateValueType("with_property", type(node_property), str)
+
+    return list(
+        filter(lambda node: (f_has_property(node, node_property, expected_value) != 0), value)
+    )
