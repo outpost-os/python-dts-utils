@@ -17,6 +17,7 @@ jobs:
       python-version: '3.11'
   lint:
     needs: [ ut, doc ]
+    if: ${{ github.event_name == 'pull_request' }}
     uses: outpost-os/pipeline-python/.github/workflows/lint.yml@v1
     with:
       python-version: '3.12'
