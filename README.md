@@ -6,6 +6,10 @@ SPDX-License-Identifier: Apache-2.0
 
 [![REUSE status](https://api.reuse.software/badge/github.com/outpost-os/python-dts-utils)](https://api.reuse.software/info/github.com/outpost-os/python-dts-utils)
 
+![PyPI - Version](https://img.shields.io/pypi/v/dts-utils)
+![PyPI - License](https://img.shields.io/pypi/l/dts-utils)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dts-utils)
+
 # dts-utils python package
 `dts-utils` is an utility python package that aims to ease dts handling in python and source code
 generation based on dts files. Dts file parsing, preprocessing, validation are **out of scope** of
