@@ -27,7 +27,7 @@ jobs:
 
       - name: Install twine
         run: |
-          pip install twine
+          pip install twine build
 
       - name: Mint token
         id: mint
