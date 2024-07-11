@@ -20,13 +20,27 @@ dependencies = [
     "Jinja2>3",
     "rich",
 ]
+classifiers = [
+    "Development Status :: 4 - Beta",
 
-# TODO
-# [project.urls]
-# Homepage =
+    "Intended Audience :: Developers",
+
+    "Topic :: Software Development :: Build Tools",
+
+    "License :: OSI Approved :: Apache Software License",
+
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/outpost-os"
 # Documentation =
-# Repository =
-# Issues =
+Repository = "https://github.com/outpost-os/python-dts-utils"
+Issues = "https://github.com/outpost-os/python-dts-utils/issues"
 
 [project.scripts]
 dts_dump = 'dts_utils.dump:main'
