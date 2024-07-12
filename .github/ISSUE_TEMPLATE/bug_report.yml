@@ -22,7 +22,7 @@ body:
       label: What happened?
       description: What is the problem or what is asked ?
   - type: textarea
-    id: dts-utils version
+    id: dts-utils
     attributes:
       label: What dts-utils version is impacted
       description: dts-utils version used
