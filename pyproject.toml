@@ -48,15 +48,11 @@ dts2src = 'dts_utils.builder:main'
 
 [project.optional-dependencies]
 devel = [
-    "coverage>=0.4",
     "flake8>=7.0,<8.0",
-    "flake8-html>=0.4.3",
     "mypy>=1.8.0",
     "pytest>=4.6",
     "pytest-cov>=5.0.0",
     "black>=24.2,<25.0",
-    "cachetools>=5.3",
-    "lxml>=4.8.0",
     "pydoclint",
     "flake8-docstrings",
 ]
