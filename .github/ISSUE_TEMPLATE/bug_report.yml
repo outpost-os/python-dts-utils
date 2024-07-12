@@ -2,26 +2,30 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: Issue Report
-description: File an issue report.
+name: Bug Report
+description: File a bug report.
 title: "bug: "
 projects: ["outpost-os/1"]
 assignees:
   - fvalette-ledger
+  - pthierry-ledger
+labels: ["bug"]
+  
 body:
   - type: markdown
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
-        please prefix with:
-        - bug: for any bug report
-        - enhancement: for proposed cleaning fix
-        - feature: for proposed new feature
   - type: textarea
     id: what-happened
     attributes:
       label: What happened?
       description: What is the problem or what is asked ?
+  - type: textarea
+    id: dts-utils version
+    attributes:
+      label: What dts-utils version is impacted
+      description: dts-utils version used
     validations:
       required: true
   - type: dropdown
@@ -40,3 +44,4 @@ body:
       label: Relevant log output
       description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
       render: shell
+
