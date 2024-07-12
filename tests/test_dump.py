@@ -5,8 +5,8 @@
 # flake8: noqa
 
 import dts_utils
+import dts_utils.dump
 
 
-def test_socload(dts_file):
-    soc = dts_file.dts.soc
-    assert soc != None
+def test_dump(dts_file):
+    usart1_info = dts_utils.dump.dump(dts_file.dts, "usart1", True)
