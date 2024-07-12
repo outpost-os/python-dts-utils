@@ -66,9 +66,6 @@ doc = [
     "sphinx-simplepdf>=1.6.0",
     "sphinx-autoapi",
 ]
-license = [
-    "reuse>=3.0.0",
-]
 
 [tool.setuptools_scm]
 # intentionally blank
