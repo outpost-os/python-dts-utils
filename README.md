@@ -11,7 +11,10 @@ SPDX-License-Identifier: Apache-2.0
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dts-utils)
 
 [![codecov](https://codecov.io/gh/outpost-os/python-dts-utils/graph/badge.svg?token=SGQPBE40UI)](https://codecov.io/gh/outpost-os/python-dts-utils)
-![build](https://github.com/outpost-os/python-dts-utils/actions/workflows/main.yml/badge.svg)
+![lint](https://github.com/outpost-os/python-dts-utils/actions/workflows/lint.yml/badge.svg)
+![unittest](https://github.com/outpost-os/python-dts-utils/actions/workflows/unittest.yml/badge.svg)
+![doc](https://github.com/outpost-os/python-dts-utils/actions/workflows/doc.yml/badge.svg)
+![quality](https://github.com/outpost-os/python-dts-utils/actions/workflows/quality.yml/badge.svg)
 
 # dts-utils python package
 `dts-utils` is an utility python package that aims to ease dts handling in python and source code
