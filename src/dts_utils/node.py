@@ -32,6 +32,14 @@ class Node:
             return self._node.labels[0]
         return ""
 
+    @property
+    def parent(self):
+        return self._node.parent
+
+    @property
+    def unit_addr(self):
+        return self._node.unit_addr
+
     def __getattr__(self, __name: str) -> Any:
         from .property import Property
 
