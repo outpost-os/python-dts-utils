@@ -5,44 +5,22 @@
 name: Upload Python Package to jfrog
 
 on:
-  release:
-    types: [released]
-  workflow_dispatch:
+  push:
+    branches:
+    - main
 
 jobs:
-  deploy:
-    runs-on: outpost-os-shared-small
-    environment: ledger-publish
-
+  pubhlish:
     permissions:
       id-token: write
       contents: read
-
-    steps:
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-      - name: Install build
-        run: |
-          pip install build
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: build package
-        run: python3 -m build .
-      - name: Login to JFrog Ledger
-        uses: LedgerHQ/actions-security/actions/jfrog-login@actions/jfrog-login-1
-      - name: set jfrog Repo URL
-        run: jf pip-config --repo-resolve=${{ secrets.JFROG_PYPI_REPO_URL }}
-      - name: upload package
-        run: jf rt u dist/ --build-name=dts-util-devel --build-number=1 --module=dts-utils
-      - name: Attest
-        id: attest
-        uses: LedgerHQ/actions-security/actions/attest@actions/attest-1
-        with:
-          subject-path: 'dist/*'
-          push-to-registry: true
-      - name: test install from jfrog
-        run: |
-          jf pip install dts-utils
-          pip show dts-utils
+      attestations: write
+    uses: outpost-os/pipeline-python/.github/workflows/publish.yml@main
+    with:
+      environment: ledger-publish
+      runner: outpost-os-shared-small
+      python-version: '3.10'
+      build-name: dts-utils-dev
+      module-name: dts-utils
+      repo-name: outpost-pypi-dev-green
+      virtual-repo-name: outpost-pypi-virtual-green
