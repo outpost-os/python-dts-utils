@@ -26,6 +26,7 @@ jobs:
       - name: Install build
         run: |
           pip install build
+      - run: curl -v https://${{ env.JFROG_HOST_URL }}
       - name: Checkout code
         uses: actions/checkout@v4
       - name: build package
